@@ -7,10 +7,10 @@ class Game
     
     # create guess countdown (number of letters in word)
 
-    def initialize(word)
+    def initialize(word, display = Array.new(word.length, "_"), guesses = display.length)
         @word = word
-        @display = Array.new(@word.length, "_")
-        @guesses = @display.length
+        @display = display
+        @guesses = guesses
     end
 
 
@@ -28,7 +28,7 @@ class Game
 
     def self.from_yaml(string)
         data = YAML.load string
-        p data
+        data
         self.new(data[:word], data[:display], data[:guesses])
     end
 end
@@ -40,6 +40,12 @@ def save_game(game)
     #serialize game and write to file
     file.puts game.to_yaml
     file.close
+end
+
+def load_game
+    file = File.open("usersave.txt", "r")
+    Game.from_yaml(file)
+
 end
 
 #new game
@@ -60,6 +66,12 @@ end
 def game_play_flow(game)
     ## loop until out of guesses:
     while game.guesses > 0 do
+        puts "Save game? 'y' for yes, 'n' for no"
+        answer = gets.chomp.to_s.downcase
+        if answer == 'y'
+            save_game(game)
+            puts "Game saved"
+        end
         # prompt user to guess a letter
         puts "Guess a letter."
         letter = gets.chomp.to_s.downcase
@@ -89,14 +101,21 @@ def game_play_flow(game)
         end
         # display progress on word e.g. h_ll_
         print game.display
-        save_game(game)
         puts ""
     end
 end
 
+puts "Press 1 to start new game. Press 2 to load saved game"
+menu_option = gets.chomp.to_i
+if menu_option == 1
+    game = new_game
+elsif menu_option == 2
+    game = load_game
+else
+    puts "Invalid option. Starting new game.."
+    game = new_game
+end
 
-
-game = new_game
 puts "\n"
 game_play_flow(game)
 

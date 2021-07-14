@@ -1,0 +1,24 @@
+---
+:word:
+- i
+- n
+- c
+- e
+- s
+- s
+- a
+- n
+- c
+- y
+:display:
+- i
+- n
+- c
+- e
+- _
+- _
+- _
+- n
+- c
+- _
+:guesses: 10
