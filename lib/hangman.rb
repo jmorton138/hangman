@@ -59,11 +59,13 @@ def new_game
         random_word = lines.sample.downcase.split('')
         random_word.pop(2)
     end
-    print random_word
     game = Game.new(random_word)
 end
 
 def game_play_flow(game)
+    puts "Your hangman word is:"
+    game.display.each {|v| print v + " "}
+    puts "\n"
     ## loop until out of guesses:
     while game.guesses > 0 do
         puts "Save game? 'y' for yes, 'n' for no"
@@ -94,13 +96,16 @@ def game_play_flow(game)
             guesses_left = game.guess_countdown
             if guesses_left == 0
                 puts "Out of guesses. You lose."
+                puts "The word was:"
+                game.word.each {|v| print v}
+                puts "\n"
                 break
             else
                 puts "Incorrect. You now have #{game.guesses} guesses remaining"
             end
         end
         # display progress on word e.g. h_ll_
-        print game.display
+        game.display.each {|v| print v + " "}
         puts ""
     end
 end
