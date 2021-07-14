@@ -1,3 +1,5 @@
+require 'yaml'
+
 class Game
     attr_reader :word
     attr_accessor :display
@@ -15,7 +17,31 @@ class Game
     def guess_countdown
         self.guesses -= 1
     end
+
+    def to_yaml
+        YAML.dump ({
+            :word => @word,
+            :display => @display,
+            :guesses => @guesses
+        })
+    end
+
+    def self.from_yaml(string)
+        data = YAML.load string
+        p data
+        self.new(data[:word], data[:display], data[:guesses])
+    end
 end
+
+def save_game(game)
+    #create file
+    fname = "usersave.txt"
+    file = File.open(fname, "w")
+    #serialize game and write to file
+    file.puts game.to_yaml
+    file.close
+end
+
 #new game
 def new_game
     #load dictionary from 5desk file
@@ -63,6 +89,7 @@ def game_play_flow(game)
         end
         # display progress on word e.g. h_ll_
         print game.display
+        save_game(game)
         puts ""
     end
 end
