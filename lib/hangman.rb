@@ -114,12 +114,12 @@ def game_play_flow(game)
                 # put letter in the displayed array at correct position
                 indexes = game.word.each_with_index.map { |v, index| v == letter ? index : nil }.compact
                 indexes.each { |index| game.display[index.to_i] = letter }
-                puts "Good guess! You got it right"
                 #end game if solved the puzzle
                 if !game.display.include?("_")
                     puts "You won!"
                     break
                 end
+                puts "Good guess! You got it right."
             end  
         else
             guesses_left = game.guess_countdown
