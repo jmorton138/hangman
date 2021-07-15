@@ -1,0 +1,34 @@
+---
+:word:
+- u
+- n
+- a
+- f
+- f
+- e
+- c
+- t
+- e
+- d
+- l
+- y
+:display:
+- u
+- _
+- a
+- _
+- _
+- e
+- _
+- _
+- e
+- _
+- _
+- _
+:guesses: 7
+:incorrect_guesses:
+- g
+- i
+- o
+- s
+- j

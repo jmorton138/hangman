@@ -1,0 +1,29 @@
+---
+:word:
+- o
+- v
+- e
+- r
+- r
+- i
+- p
+- e
+- n
+:display:
+- o
+- _
+- _
+- _
+- _
+- _
+- _
+- _
+- _
+:guesses: 2
+:incorrect_guesses:
+- d
+- f
+- g
+- a
+- s
+- t
